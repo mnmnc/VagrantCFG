@@ -1,0 +1,58 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# SEARCH
+  # boxes at https://atlas.hashicorp.com/search.
+
+
+Vagrant.configure(2) do |config|
+
+  # NAME
+  config.vm.box = "debian/jessie64"
+
+  # UPDATE
+  config.vm.box_check_update = true
+
+  # PORT FORWARD
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # PRIVATE NETWORK
+  # config.vm.network "stardust", ip: "192.168.0.2"
+
+  # BRIDGED NETWORK 
+  # config.vm.network "public_network"
+
+  # PRIVATE NETWORK / ADVANCED 
+  config.vm.provider "virtualbox" do |vb|
+    config.vm.network "private_network", :type => 'dhcp', :name => 'vboxnet0', :adapter => 2
+  end
+
+  # SHARE HOST DIRECTORY
+  # config.vm.synced_folder "host_directory", "/guest_mount_point"
+
+
+  # VIRTUAL BOX CUSTOM SETTINGS
+  # config.vm.provider "virtualbox" do |vb|
+  #   # Display the VirtualBox GUI when booting the machine
+  #   vb.gui = true
+  #
+  #   # Customize the amount of memory on the VM:
+  #   vb.memory = "1024"
+  # end
+
+
+  # SHELL INLINE SCRIPTS
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   sudo apt-get update
+  #   sudo apt-get install -y apache2
+  # SHELL
+
+  # SCRIPTS
+  # config.vm.provision :shell, path: "script.sh"
+
+  # LOGIN
+  # config.ssh.username = 'root'
+  # config.ssh.password = 'vagrant'
+  # config.ssh.insert_key = 'true'
+
+end
